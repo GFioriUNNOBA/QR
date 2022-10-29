@@ -10,9 +10,13 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametros
     private Long id;
+    @Column(nullable = false,unique = true)
     private int razonSocial;
+    @Column(nullable = false,unique = true)
     private int cuit;
+    @Column(nullable = false,unique = true) //preguntar si es unico
     private String nombre;
+    @Column(nullable = false)
     private boolean activo;
 
     @ManyToOne

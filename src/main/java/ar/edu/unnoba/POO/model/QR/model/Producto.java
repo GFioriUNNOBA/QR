@@ -6,16 +6,26 @@ import javax.persistence.*;
 @Table(name= "productos")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametros
-    private Long id;
-    private String nombre;
-    private float importe;
-    private boolean activo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametro
     private int codigo;
+    @Column(nullable = true,unique = true)
+    private Long idSistemaGestion;
+    @Column(nullable = false)
+    private String nombre;
+    @Column(nullable = false)
+    private float importe;
+    @Column(nullable = false)
+    private boolean activo;
+
+    @Column(length = 100)
     private String descripcion;
 
     @ManyToOne
     private Empresa empresa;
+
+    public Producto() { //porque es necesario crear un contructor vacio
+
+    }
 
     public Empresa getEmpresa() {
         return empresa;
@@ -26,8 +36,8 @@ public class Producto {
     }
 
 
-    public Producto(Long id, String nombre, float importe, boolean activo, int codigo, String descripcion, Empresa empresa) {
-        this.id = id;
+    public Producto(Long idSistemaGestion, String nombre, float importe, boolean activo, int codigo, String descripcion, Empresa empresa) {
+        this.idSistemaGestion = idSistemaGestion;
         this.nombre = nombre;
         this.importe = importe;
         this.activo = activo;
@@ -36,15 +46,12 @@ public class Producto {
         this.empresa = empresa;
     }
 
-    public Producto() {
+    public Long getIdSistemaGestion() {
+        return idSistemaGestion;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdSistemaGestion(Long idSistemaGestion) {
+        this.idSistemaGestion = idSistemaGestion;
     }
 
     public String getNombre() {

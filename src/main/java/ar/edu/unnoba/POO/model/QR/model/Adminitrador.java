@@ -8,9 +8,14 @@ public class Adminitrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametros
     private Long id;
+    @Column(nullable = false)
     private String apellido;
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false,unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
 
     public Adminitrador(Long id, String apellido, String nombre, String email, String password) {

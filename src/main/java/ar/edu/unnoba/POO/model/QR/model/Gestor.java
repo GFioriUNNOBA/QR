@@ -9,9 +9,13 @@ public class Gestor {
     @Id //indica que el atributo id es unico
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametros
     private Long id;
+    @Column(nullable = false)
     private String apellido;
+    @Column(nullable = false)
     private String nombre;
+    @Column(nullable = false,unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
     @OneToMany(mappedBy = "gestor") //inica la relacion entre 2 clases, simepre que hay un ,OneToMany hay un ManyToOne, el mappedBy hace que se mapee con el atributo gestor que se encuentra en empresa
     private List<Empresa> empresa;
