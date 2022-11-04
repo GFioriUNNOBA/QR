@@ -20,7 +20,8 @@ public class Producto {
     @Column(length = 100)
     private String descripcion;
 
-    @ManyToOne
+   @ManyToOne
+   @JoinColumn(name= "empresa_id")
     private Empresa empresa;
 
     public Producto() { //porque es necesario crear un contructor vacio

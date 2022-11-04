@@ -19,7 +19,9 @@ public class Empresa {
     @Column(nullable = false)
     private boolean activo;
 
+
     @ManyToOne
+    @JoinColumn(name = "gestor_id")
     private Gestor gestor;
     @OneToMany(mappedBy = "empresa")
     private List<Producto> productos;
