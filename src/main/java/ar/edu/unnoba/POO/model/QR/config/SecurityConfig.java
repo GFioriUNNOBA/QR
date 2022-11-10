@@ -9,12 +9,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public SecurityConfig(UserDetailsService userDetailsService) {
@@ -25,11 +25,8 @@ public class SecurityConfig {
         return userDetailsService;
     }
 
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
-    public DefaultSecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((requests) -> requests
                         .antMatchers("/webjars/**", "/resources/**","/css/**").permitAll()
@@ -43,7 +40,7 @@ public class SecurityConfig {
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
-
+    @Bean
     public UserDetailsService userDetailsService(){
         return getUserDetailsService();
     }

@@ -1,6 +1,7 @@
 package ar.edu.unnoba.POO.model.QR.service;
 
 import ar.edu.unnoba.POO.model.QR.model.Adminitrador;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
