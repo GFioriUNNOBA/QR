@@ -17,6 +17,7 @@ public class Adminitrador implements UserDetails {
     private Long id;
     @Column(nullable = false)
     private String apellido;
+
     @Column(nullable = false)
     private String nombre;
 
@@ -75,7 +76,7 @@ public class Adminitrador implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return this.getNombre();
     }
 
     @Override
@@ -95,7 +96,7 @@ public class Adminitrador implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setPassword(String password) {
@@ -104,6 +105,6 @@ public class Adminitrador implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 }

@@ -3,6 +3,7 @@ package ar.edu.unnoba.POO.model.QR.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,11 +27,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .antMatchers("/webjars/**", "/resources/**","/css/**").permitAll()
-                        .antMatchers("/").permitAll()
+                        .antMatchers("/webjars/**", "/resources/**", "/css/**").permitAll()
+                        .antMatchers("/","/admin/new").permitAll()
+                        .antMatchers(HttpMethod.POST,"/admin").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -38,6 +40,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
+
         return http.build();
     }
     @Bean

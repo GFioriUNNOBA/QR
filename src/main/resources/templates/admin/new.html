@@ -6,10 +6,10 @@
 </head>
 <body>
     <div>New User</div>
-    <form action="#" th:action="@{/admininstradores}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/admin}" th:object="${admin}" method="post">
         <input type="text" th:field="*{nombre}"/>
         <input type="password" th:field="*{password}"/>
-        <button type="submit" name="nombre">Create</button>
+        <button type="submit" name="newUser">Create</button>
     </form>
 
 </body>
