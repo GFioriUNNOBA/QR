@@ -1,5 +1,7 @@
 package ar.edu.unnoba.POO.model.QR.config;
 
+import ar.edu.unnoba.POO.model.QR.service.AdminServiceImp;
+import ar.edu.unnoba.POO.model.QR.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final UserDetailsService userDetailsService;
+    private AdminServiceImp userDetailsService;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(AdminServiceImp userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -45,7 +47,7 @@ public class SecurityConfig {
     }
     @Bean
     public UserDetailsService userDetailsService(){
-        return getUserDetailsService();
+        return this.userDetailsService;
     }
 
     @Bean
@@ -56,10 +58,9 @@ public class SecurityConfig {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
-
         return authProvider;
+
     }
 }

@@ -18,18 +18,17 @@ public class Adminitrador implements UserDetails {
     @Column(nullable = false)
     private String apellido;
 
-    @Column(nullable = false)
-    private String nombre;
+    @Column(nullable = false, name = "nombre")
+    private String username;
 
     @Column(nullable = false,unique = true)
     private String email;
     @Column(nullable = false)
     private String password;
 
-    public Adminitrador(Long id, String apellido, String nombre, String email, String password) {
+    public Adminitrador(Long id, String apellido, String email, String password) {
         this.id = id;
         this.apellido = apellido;
-        this.nombre = nombre;
         this.email = email;
         this.password = password;
     }
@@ -53,14 +52,6 @@ public class Adminitrador implements UserDetails {
         this.apellido = apellido;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -76,7 +67,7 @@ public class Adminitrador implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.getNombre();
+        return this.username;
     }
 
     @Override
@@ -103,8 +94,8 @@ public class Adminitrador implements UserDetails {
         this.password = password;
     }
 
-    @Override
+   @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 }

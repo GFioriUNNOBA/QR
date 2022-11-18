@@ -23,7 +23,7 @@ public class AdminController {
 
     @GetMapping("/new")
     public String userNew(Model model){
-        model.addAttribute("admin",new Adminitrador());
+        model.addAttribute("username",new Adminitrador());
         return "admin/new";
     }
 

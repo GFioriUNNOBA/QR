@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface AdminRepository extends JpaRepository<Adminitrador,Long> {
-    public Adminitrador findByNombre(String nombre);
+    public Adminitrador findByUsername(String username);
 
 }

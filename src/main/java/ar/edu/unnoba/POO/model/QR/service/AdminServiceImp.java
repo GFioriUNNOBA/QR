@@ -18,10 +18,12 @@ public class AdminServiceImp implements IUserService, UserDetailsService {
         this.repository = repository;
     }
 
+    public AdminServiceImp() {
+    }
 
     @Override
     public Adminitrador create(Adminitrador user) {
-        if(repository.findByNombre(user.getUsername())==null){
+        if(repository.findByUsername(user.getUsername())==null){
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             user = repository.save(user);
         }
@@ -41,6 +43,6 @@ public class AdminServiceImp implements IUserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
-        return (UserDetails)repository.findByNombre(nombre);
+        return (UserDetails)repository.findByUsername(nombre);
     }
 }
