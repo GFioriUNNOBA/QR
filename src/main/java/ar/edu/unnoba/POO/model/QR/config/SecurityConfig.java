@@ -32,11 +32,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .antMatchers("/webjars/**", "/resources/**", "/css/**").permitAll()
-                        .antMatchers("/","/admin/new").permitAll()
-                        .antMatchers(HttpMethod.POST,"/admin").permitAll()
+                        .antMatchers("/webjars/**", "/resources/**","/css/**").permitAll()
+                        .antMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
