@@ -7,10 +7,10 @@
 <body>
     <div>New User</div>
     <form action="#" th:action="@{/admin}" th:object="${username}" method="post">
-        <input type="text" th:field="*{username}"/>
-        <input type="password" th:field="*{password}"/>
-        <input type="text" th:field="*{email}"/>
-        <input type="text" th:field="*{apellido}"/>
+        <input type="text" th:field="*{username}" required/>
+        <input type="password" th:field="*{password}"required/>
+        <input type="text" th:field="*{email}"required/>
+        <input type="text" th:field="*{apellido}"required/>
         <button type="submit" name="newUser">Create</button>
     </form>
 

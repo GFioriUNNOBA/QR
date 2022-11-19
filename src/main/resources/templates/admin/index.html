@@ -25,5 +25,12 @@
         </tbody>
     </table>
     <a class="badge badge-primary" th:href="@{/admin/new}">New User</a>
+
+    <div style="display: block;horiz-align: right;">
+        <form action="#" th:action="@{/logout}" th:method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+    admin
 </body>
 </html>

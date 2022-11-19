@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -26,9 +25,10 @@ public class Adminitrador implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    public Adminitrador(Long id, String apellido, String email, String password) {
+    public Adminitrador(Long id, String apellido, String username, String email, String password) {
         this.id = id;
         this.apellido = apellido;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -68,6 +68,10 @@ public class Adminitrador implements UserDetails {
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
