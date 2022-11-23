@@ -11,4 +11,6 @@ public interface IUserService { //preg si el nombre esta bien y si hacemos una c
     public List<Adminitrador> getAll();
 
     public void delete(Long id);
+
+
 }

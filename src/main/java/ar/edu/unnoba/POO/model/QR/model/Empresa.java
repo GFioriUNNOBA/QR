@@ -1,12 +1,18 @@
 package ar.edu.unnoba.POO.model.QR.model;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name= "empresas")
-public class Empresa {
+public class Empresa implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametros
     private Long id;
@@ -14,9 +20,9 @@ public class Empresa {
     private int razonSocial;
     @Column(nullable = false,unique = true)
     private int cuit;
-    @Column(nullable = false,unique = true) //preguntar si es unico
-    private String nombre;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true, name = "nombre") //preguntar si es unico
+    private String username;
+    @Column()//@Column(nullable = false) lo dejamos aca momentaneamente
     private boolean activo;
 
 
@@ -26,11 +32,11 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa")
     private List<Producto> productos;
 
-    public Empresa(Long id, int razonSocial, int cuit, String nombre, boolean activo, Gestor gestor, List<Producto> productos) {
+    public Empresa(Long id, int razonSocial, int cuit, String username, boolean activo, Gestor gestor, List<Producto> productos) {
         this.id = id;
         this.razonSocial = razonSocial;
         this.cuit = cuit;
-        this.nombre = nombre;
+        this.username = username;
         this.activo = activo;
         this.gestor = gestor;
         this.productos = productos;
@@ -79,12 +85,52 @@ public class Empresa {
         this.cuit = cuit;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public List<Producto> getProductos() {
+        return productos;
     }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 
 }

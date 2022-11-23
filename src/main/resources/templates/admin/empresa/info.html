@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InfoEmpresa</title>
+</head>
+<body>
+<div class="container">
+    <div th:fragment="content">
+
+
+
+        <h2>Lista empresa</h2>
+        <table class="table table-stripped">
+            <tr>
+                <th>username</th>
+
+            </tr>
+
+            <tr th:each="emp : ${empresa}">
+                <td th:text="${emp.getUsername()}"></td>
+            </tr>
+        </table>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <button>New Product</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

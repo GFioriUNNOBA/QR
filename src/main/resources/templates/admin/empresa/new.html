@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>New Empresa</div>
+    <form action="#" th:action="@{/admin/empresa}" th:object="${emp}" method="post">
+        <input type="text" th:field="*{username}" required/>
+        <input type="number" th:field="*{cuit}"required/>
+        <input type="number" th:field="*{razonSocial}"required/>
+
+        <button type="submit" name="newEmpresa">Create</button>
+    </form>
+
+</body>
+</html>
