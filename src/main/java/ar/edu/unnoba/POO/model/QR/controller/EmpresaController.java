@@ -55,10 +55,4 @@ public class EmpresaController {
 
     }
 
-    @GetMapping("/admin/empresa/{id}")
-    public String listProducts(Model model) {
-        System.out.println("Get all products...");
-        model.addAttribute("emp", empresaService.getAll());
-        return "admin/empresa/index";
-    }
 }
