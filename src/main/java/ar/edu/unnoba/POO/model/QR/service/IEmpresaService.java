@@ -13,5 +13,7 @@ public interface IEmpresaService {
 
     public void delete(Long id);
 
-    public void info(Empresa empresa);
+    public Empresa info(Long id);
+
+
 }

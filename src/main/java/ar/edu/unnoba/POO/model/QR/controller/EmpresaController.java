@@ -1,5 +1,6 @@
 package ar.edu.unnoba.POO.model.QR.controller;
 
+
 import ar.edu.unnoba.POO.model.QR.model.Empresa;
 import ar.edu.unnoba.POO.model.QR.service.IEmpresaService;
 
@@ -8,9 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.security.auth.kerberos.KerberosKey;
 import java.util.List;
 
 @Controller
@@ -32,10 +31,8 @@ public class EmpresaController {
 
     @GetMapping("/index")
     public String index(Model model, Authentication authentication){
-       // Empresa sessionempresa = (Empresa) authentication.getPrincipal();
         List<Empresa> empresa = empresaService.getAll();
         model.addAttribute("empresa",empresa);
-    //    model.addAttribute("sessionempresa",sessionempresa);
         return "admin/empresa/index";
     }
 
@@ -44,15 +41,28 @@ public class EmpresaController {
         empresaService.create(user);
         return "redirect:/admin/empresa/index";
     }
-
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Authentication authentication, RedirectAttributes redirectAttributes){
-        return "redirect:/empresa";
+    public String delete(@PathVariable("id") Long id){
+        empresaService.delete(id);
+        return "redirect:/admin/empresa/index";
     }
 
-    @GetMapping("/admin/empresa/{id}")
-    public void info(@PathVariable("id") Long id){
+   /**
+    * @GetMapping("/info/{id}") public String info(@PathVariable("id") Long id, Model modelo){
+    * Long idEmpresa = empresaService.info(id);
+    * modelo.addAttribute("idEmpresa",idEmpresa);
+    * return "/admin/empresa/info";
+    * }
+    **/
 
+    @GetMapping("/info/{id}")
+    public String info(@PathVariable Long id, Model model) {
+        Empresa empresa = empresaService.info(id);
+        model.addAttribute("empre",empresa);
+
+        return "/admin/empresa/info";
     }
+
+
 
 }
