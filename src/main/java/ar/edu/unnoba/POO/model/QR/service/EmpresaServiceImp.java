@@ -1,7 +1,9 @@
 package ar.edu.unnoba.POO.model.QR.service;
 
 import ar.edu.unnoba.POO.model.QR.model.Empresa;
+import ar.edu.unnoba.POO.model.QR.model.Gestor;
 import ar.edu.unnoba.POO.model.QR.repository.EmpresaRepository;
+import ar.edu.unnoba.POO.model.QR.repository.GestorRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,7 @@ import java.util.*;
 public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
     @Autowired
     private EmpresaRepository repository;
+    private GestorRespository grepository;
 
     public EmpresaServiceImp(EmpresaRepository repository) {
         this.repository = repository;

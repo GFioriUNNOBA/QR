@@ -1,11 +1,17 @@
 package ar.edu.unnoba.POO.model.QR.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name= "gestores")
-public class Gestor {
+public class Gestor implements UserDetails {
     @Id //indica que el atributo id es unico
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametros
     private Long id;
@@ -13,19 +19,19 @@ public class Gestor {
     private String apellido;
     @Column(nullable = false)
     private String nombre;
-    @Column(nullable = false,unique = true)
-    private String email;
+    @Column(nullable = false,unique = true,name="email")
+    private String username;
     @Column(nullable = false)
     private String password;
     @OneToMany(mappedBy = "gestor") //inica la relacion entre 2 clases, simepre que hay un ,OneToMany hay un ManyToOne, el mappedBy hace que se mapee con el atributo gestor que se encuentra en empresa
     private List<Empresa> empresa;
 
 
-    public Gestor(Long id, String apellido, String nombre, String email, String password, List<Empresa> empresa) {
+    public Gestor(Long id, String apellido, String nombre, String username, String password, List<Empresa> empresa) {
         this.id = id;
         this.apellido = apellido;
         this.nombre = nombre;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.empresa = empresa;
     }
@@ -59,19 +65,55 @@ public class Gestor {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public List<Empresa> getEmpresa() {
+        return empresa;
     }
 
-    public String getPassword() {
-        return password;
+    public void setEmpresa(List<Empresa> empresa) {
+        this.empresa = empresa;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_GESTOR"));
+
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
