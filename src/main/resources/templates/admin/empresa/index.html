@@ -21,7 +21,7 @@
             <td th:text="${emp.getCuit()}"></td>
             <td><a class="badge badge-primary" th:href="@{/admin/empresa/delete/{id}(id=${emp.id})}">Eliminar</a></td>
             <td><a class="badge badge-primary" th:href="@{/admin/empresa/info/{id}(id=${emp.id})}">Info</a></td>
-            <td><a class="badge badge-primary" th:href="@{/gestor/index}">Gestor asociado</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${emp.id})}">Gestor asociado</a></td>
 
         </tr>
         </tbody>

@@ -26,28 +26,28 @@ public class Empresa implements UserDetails {
     private boolean activo;
 
 
-    @ManyToOne
-    @JoinColumn(name = "gestor_id")
-    private Gestor gestor;
+    @OneToMany(mappedBy = "empresa")
+    private List<Gestor> gestores;
     @OneToMany(mappedBy = "empresa")
     private List<Producto> productos;
 
-    public Empresa(Long id, int razonSocial, int cuit, String username, boolean activo, Gestor gestor, List<Producto> productos) {
+
+    public Empresa(Long id, int razonSocial, int cuit, String username, boolean activo, List<Gestor> gestores, List<Producto> productos) {
         this.id = id;
         this.razonSocial = razonSocial;
         this.cuit = cuit;
         this.username = username;
         this.activo = activo;
-        this.gestor = gestor;
+        this.gestores = gestores;
         this.productos = productos;
     }
 
-    public Gestor getGestor() {
-        return gestor;
+    public List<Gestor> getGestores() {
+        return gestores;
     }
 
-    public void setGestor(Gestor gestor) {
-        this.gestor = gestor;
+    public void setGestores(List<Gestor> gestores) {
+        this.gestores = gestores;
     }
 
     public Empresa() {

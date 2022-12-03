@@ -70,4 +70,13 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
         return (UserDetails)repository.findByUsername(username);
     }
 
+    public Empresa Id(Long id) {
+        List<Empresa> emp = repository.findAll();
+        for (Empresa e : emp) {
+            if (e.getId().equals(id)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

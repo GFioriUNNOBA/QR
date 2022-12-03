@@ -18,17 +18,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="gestor : ${g}">
+        <tr th:each="gestor : ${idEmpresa.getGestores()}">
             <td th:text="${gestor.getUsername()}"></td>
             <td th:text="${gestor.getNombre()}"></td>
             <td th:text="${gestor.getApellido()}"></td>
 
-       <td><a class="badge badge-primary" th:href="@{/gestor/info/{id}(id=${gestor.id})}">Info</a></td>
-            <td><a class="badge badge-primary" th:href="@{/gestor/delete/{id}(id=${gestor.id})}">Eliminar</a></td>
+       <td><a class="badge badge-primary" th:href="@{/admin/empresa/gestores/info/{id}(id=${gestor.id})}">Info</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/gestores/delete/{id}(id=${gestor.id})}">Eliminar</a></td>
         </tr>
         </tbody>
     </table>
-    <a class="badge badge-primary" th:href="@{/gestor/new}">New Gestor </a>
+    <a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${idEmpresa.id})}">New Gestor </a>
 
     <div style="display: block;horiz-align: right;">
         <form action="#" th:action="@{/logout}" th:method="post">

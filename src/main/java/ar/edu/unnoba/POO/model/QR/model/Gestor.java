@@ -23,11 +23,18 @@ public class Gestor implements UserDetails {
     private String username;
     @Column(nullable = false)
     private String password;
-    @OneToMany(mappedBy = "gestor") //inica la relacion entre 2 clases, simepre que hay un ,OneToMany hay un ManyToOne, el mappedBy hace que se mapee con el atributo gestor que se encuentra en empresa
-    private List<Empresa> empresa;
+    @ManyToOne
+    @JoinColumn(name="gestor_id")//inica la relacion entre 2 clases, simepre que hay un ,OneToMany hay un ManyToOne, el mappedBy hace que se mapee con el atributo gestor que se encuentra en empresa
+    private Empresa empresa;
 
 
-    public Gestor(Long id, String apellido, String nombre, String username, String password, List<Empresa> empresa) {
+
+
+    public Gestor() {
+
+    }
+
+    public Gestor(Long id, String apellido, String nombre, String username, String password, Empresa empresa) {
         this.id = id;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -36,10 +43,13 @@ public class Gestor implements UserDetails {
         this.empresa = empresa;
     }
 
-    public Gestor() {
-
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
     public Long getId() {
         return id;
@@ -70,13 +80,7 @@ public class Gestor implements UserDetails {
         this.username = username;
     }
 
-    public List<Empresa> getEmpresa() {
-        return empresa;
-    }
 
-    public void setEmpresa(List<Empresa> empresa) {
-        this.empresa = empresa;
-    }
 
     public void setPassword(String password) {
         this.password = password;
