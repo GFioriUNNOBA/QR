@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Producto</title>
+    <title>Productos</title>
 </head>
 <body>
 
@@ -15,17 +15,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="emp : ${producto}">
+        <tr th:each="emp : ${productosDeEsaEmpresa}">
             <td th:text="${emp.getUsername()}"> </td>
             <td th:text="${emp.getCodigo()}"> </td>
             <td th:text="${emp.getImporte()}"> </td>
 
             <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${prod})/gestores/info/{idI}(idI=${emp.getCodigo()})}">Info</a></td>
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${prod})/gestores/delete/{idD}(idD=${emp.getCodigo()})  }">Eliminar</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}/gestores/delete/{idD}(idD=${emp.getCodigo()}) (id=${idEmpresa}) }">Eliminar</a></td>
         </tr>
         </tbody>
     </table>
-    <a class="badge badge-primary" th:href="@{/admin/empresa/{id}/productos/new(id=${prod})}">Nuevo producto</a>
+    <a class="badge badge-primary" th:href="@{/admin/empresa/{id}/productos/new (id=${idEmpresa})}">Nuevo producto</a>
 
 
 </body>

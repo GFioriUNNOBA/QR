@@ -103,7 +103,7 @@ public class GestorController {
         Gestor gestor = gestorServiceImp.info(id);
         model.addAttribute("ges",gestor);
 
-        return "/info";
+        return "/admin/empresa/gestores/info";
     }
 
 

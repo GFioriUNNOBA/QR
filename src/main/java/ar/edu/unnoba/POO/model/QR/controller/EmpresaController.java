@@ -44,7 +44,11 @@ public class EmpresaController {
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id){
-        empresaService.delete(id);
+        Empresa empresa=empresaService.infoEmpresa(id);
+        if(empresa.getProductos().size() == 0){
+            empresaService.delete(id);
+            return "redirect:/admin/empresa/index";
+        }
         return "redirect:/admin/empresa/index";
     }
 

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Gestores</title>
 </head>
 <body>
     <div>Hola gestor </div>
@@ -13,14 +13,15 @@
     <table class="table table-dark">
         <thead>
         <tr>
-            <th>nombre</th>
+            <th>Apellido</th> <th>Nombre</th><th>email</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="gestor : ${gestoresDeEsaEmpresa}">
+            <td th:text="${gestor.getApellido()}"></td>
+            <td th:text="${gestor.getNombre()}"></td>
             <td th:text="${gestor.getUsername()}"></td>
-            <td th:text="${gestor.getId()}"></td>
 
        <td><a class="badge badge-primary" th:href="@{/admin/empresa/gestores/info/{id}(id=${gestor.id})}">Info</a></td>
             <td><a class="badge badge-primary" th:href="@{/admin/empresa/gestores/delete/{id}(id=${gestor.id})}">Eliminar</a></td>

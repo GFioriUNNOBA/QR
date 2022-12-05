@@ -47,6 +47,7 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
 
     @Override
     public void delete(Long id) {
+
         repository.deleteById(id);
     }
 

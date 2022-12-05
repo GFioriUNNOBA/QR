@@ -1,8 +1,10 @@
 package ar.edu.unnoba.POO.model.QR.controller;
 
 import ar.edu.unnoba.POO.model.QR.model.Empresa;
+import ar.edu.unnoba.POO.model.QR.model.Gestor;
 import ar.edu.unnoba.POO.model.QR.model.Producto;
 import ar.edu.unnoba.POO.model.QR.service.EmpresaServiceImp;
+import ar.edu.unnoba.POO.model.QR.service.GestorServiceImp;
 import ar.edu.unnoba.POO.model.QR.service.IProductoService;
 import ar.edu.unnoba.POO.model.QR.service.ProductoServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,42 +13,68 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("admin/empresa/{id}/productos")
 public class ProductoController {
-    private IProductoService productoService;
+    @Autowired
+    private ProductoServiceImp productoService;
 
     @Autowired
-    public ProductoController(IProductoService prodService){
-        this.productoService = prodService;
-    }
+    private EmpresaServiceImp empresaServiceImp;
 
-    @GetMapping("/new")
-    public String productNew(Model model,@PathVariable("id") Long id){
-        model.addAttribute("prod",new Producto());
-        model.addAttribute("idEmpresa",id);
-        return "admin/empresa/productos/new";
-    }
 
-    @GetMapping ("/index")
-    public String index(Model model, Authentication authentication,@PathVariable("id") Long id){
-        List<Producto> productos = productoService.getAll();
-        model.addAttribute("producto",productos);
-        model.addAttribute("prod",id);
-        return "admin/empresa/productos/index";
-    }
+   @GetMapping("/index")
+   public String index(@PathVariable("id") Long id,Model model){
+
+       List<Producto> productos = productoService.getAll();
+       List<Producto> prod=new ArrayList<>();
+
+       model.addAttribute("productos", productos);
+       model.addAttribute("idEmpresa", id);
+       for(Producto p : productos){ // deberia ir en service
+           if(p.getEmpresa().getId().equals(id)){
+               prod.add(p);
+               model.addAttribute("productosDeEsaEmpresa" , prod);
+
+           }
+       }
+
+       return "admin/empresa/productos/index";
+   }
+   @GetMapping("/new")
+   public String userNew(@PathVariable("id") Long id, Model model, Authentication authentication ){
+       Empresa empresa = empresaServiceImp.infoEmpresa(id);
+       Producto producto = new Producto();
+       producto.setEmpresa(empresa);
+       model.addAttribute("prod", producto);
+       return "/admin/empresa/productos/new";
+   }
 
     @PostMapping
-    public String create(@ModelAttribute Producto producto){
+    public String create(@ModelAttribute Producto producto,@PathVariable("id") Long id, Model model){
+        Empresa empresa = empresaServiceImp.infoEmpresa(id);
+        producto.setEmpresa(empresa);
         productoService.create(producto);
+
         return "redirect:/admin/empresa/{id}/productos/index";
     }
 
-    @GetMapping("/delete/{idD}")
+
+
+    @GetMapping("/delete")
     public String delete(@PathVariable("id") Long id){
         productoService.delete(id);
         return "redirect:/admin/empresa/{id}/productos/index";
+    }
+
+    @GetMapping("/info")
+    public String info(@PathVariable ("id") Long id, Model model) {
+        Producto producto = productoService.infoProducto(id);
+        model.addAttribute("pro",producto);
+
+        return "/admin/empresa/productos/info";
     }
 }

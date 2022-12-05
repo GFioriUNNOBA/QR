@@ -6,7 +6,7 @@
 </head>
 <body>
     <div>New Producto</div>
-    <form action="#" th:action="@{/admin/empresa/{id}/producto(id=${ prod.getCodigo()})}" th:object="${prod}" method="post">
+    <form action="#" th:action="@{/admin/empresa/{id}/productos(id=${ prod.getEmpresa().getId()})}" th:object="${prod}" method="post">
         <input type="text" th:field="*{username}" required/>
         <input type="number" th:field="*{importe}" required/>
         <input type="number" th:field="*{idSistemaGestion}" required/>
