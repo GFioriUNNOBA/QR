@@ -14,4 +14,6 @@ public interface IGestorService {
     public void delete(Long id);
 
     public Gestor info(Long id);
+
+    List<Gestor> findAllByGestorId(Long id);
 }

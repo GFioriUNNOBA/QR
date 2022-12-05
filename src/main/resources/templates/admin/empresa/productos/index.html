@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Empresa</title>
+</head>
+<body>
+
+    <div>Empresa List</div>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th>Empresa</th> <th>RS</th><th>Cuit</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp : ${empresa}">
+            <td th:text="${emp.getUsername()}"> </td>
+            <td th:text="${emp.getRazonSocial()}"></td>
+            <td th:text="${emp.getCuit()}"></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/delete/{id}(id=${emp.id})}">Eliminar</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/info/{id}(id=${emp.id})}">Info</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${emp.id})}">Gestor asociado</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <a class="badge badge-primary" th:href="@{/admin/empresa/new}">Nueva Empresa</a>
+
+
+</body>
+</html>

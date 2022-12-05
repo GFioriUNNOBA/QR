@@ -50,11 +50,17 @@ public class EmpresaController {
 
     @GetMapping("/info/{id}")
     public String info(@PathVariable Long id, Model model) {
-        Empresa empresa = empresaService.info(id);
+        Empresa empresa = empresaService.infoEmpresa(id);
         model.addAttribute("empre",empresa);
 
         return "/admin/empresa/info";
     }
+    @GetMapping("/{id}")
+    public String id(@PathVariable Long id){
+        return "redirect:/admin/empresa/{id}/gestores/index";
+    }
+
+
 
 
 

@@ -16,7 +16,7 @@ import java.util.*;
 public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
     @Autowired
     private EmpresaRepository repository;
-    private GestorRespository grepository;
+    private GestorServiceImp gestorServiceImp;
 
     public EmpresaServiceImp(EmpresaRepository repository) {
         this.repository = repository;
@@ -27,14 +27,13 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
 
     @Override
     public Empresa create(Empresa empresa) {
-        if(repository.findByUsername(empresa.getUsername())== null){
+        if (repository.findByUsername(empresa.getUsername()) == null) {
             empresa.getUsername();
             empresa = repository.save(empresa);
 
         }
         return empresa;
     }
-
 
 
     @Override
@@ -45,16 +44,18 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
     }
 
 
+
+
     @Override
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
     @Override
-    public Empresa info(Long id) {
+    public Empresa infoEmpresa(Long id) {
         List<Empresa> emp = repository.findAll();
-        for(Empresa e : emp){
-            if(e.getId().equals(id)){
+        for (Empresa e : emp) {
+            if (e.getId().equals(id)) {
                 return e;
             }
 
@@ -63,11 +64,15 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
         return null;
     }
 
+    @Override
+    public List<Gestor> Gestores(Long id) {
+        return gestorServiceImp.getAll();
+    }
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return (UserDetails)repository.findByUsername(username);
+        return (UserDetails) repository.findByUsername(username);
     }
 
     public Empresa Id(Long id) {
@@ -79,4 +84,5 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
         }
         return null;
     }
+
 }

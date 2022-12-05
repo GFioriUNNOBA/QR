@@ -12,11 +12,11 @@ public interface IEmpresaService {
 
     public List<Empresa> getAll();
 
+
     public void delete(Long id);
 
-    public Empresa info(Long id);
+    public Empresa infoEmpresa(Long id);
 
 
-
-
+    List<Gestor> Gestores(Long id);
 }

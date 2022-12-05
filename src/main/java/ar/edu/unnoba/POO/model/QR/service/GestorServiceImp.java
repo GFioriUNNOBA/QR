@@ -2,6 +2,7 @@ package ar.edu.unnoba.POO.model.QR.service;
 
 import ar.edu.unnoba.POO.model.QR.model.Empresa;
 import ar.edu.unnoba.POO.model.QR.model.Gestor;
+import ar.edu.unnoba.POO.model.QR.repository.EmpresaRepository;
 import ar.edu.unnoba.POO.model.QR.repository.GestorRespository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,8 @@ import java.util.List;
 public class GestorServiceImp implements IGestorService, UserDetailsService {
 
     private GestorRespository gestorRespository;
+    private EmpresaRepository empresaRepository;
+
 
     public GestorServiceImp(GestorRespository gestorRespository) {
         this.gestorRespository = gestorRespository;
@@ -25,7 +28,10 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
         if(gestorRespository.findByUsername(gestor.getUsername())==null){
             gestor.setPassword(new BCryptPasswordEncoder().encode(gestor.getPassword()));
             gestor = gestorRespository.save(gestor);
+
+
         }
+
         return gestor;
     }
 
@@ -54,9 +60,16 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
         return null;
     }
 
+    @Override
+    public List<Gestor> findAllByGestorId(Long id) {
+       List<Gestor> gestores = gestorRespository.findAllById(id);
+       return  gestores;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
     }
+
+
 }
