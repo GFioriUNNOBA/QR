@@ -11,4 +11,6 @@ public interface GestorRespository extends JpaRepository<Gestor,Long> {
     public Gestor findByUsername(String email); //intentemos buscar por email, si no sale buscamos por nombre
 
     List<Gestor> findAllById(Long id);
+
+
 }

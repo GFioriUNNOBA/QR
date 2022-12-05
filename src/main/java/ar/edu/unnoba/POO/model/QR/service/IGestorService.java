@@ -15,5 +15,6 @@ public interface IGestorService {
 
     public Gestor info(Long id);
 
+
     List<Gestor> findAllByGestorId(Long id);
 }

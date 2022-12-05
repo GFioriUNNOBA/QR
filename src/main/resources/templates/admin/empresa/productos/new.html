@@ -2,16 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Nueva Empresa</title>
+    <title>Nuevo producto</title>
 </head>
 <body>
-    <div>New Empresa</div>
-    <form action="#" th:action="@{/admin/empresa}" th:object="${emp}" method="post">
+    <div>New Producto</div>
+    <form action="#" th:action="@{/admin/empresa/{id}/producto(id=${ prod.getCodigo()})}" th:object="${prod}" method="post">
         <input type="text" th:field="*{username}" required/>
-        <input type="number" th:field="*{cuit}"required/>
-        <input type="number" th:field="*{razonSocial}"required/>
+        <input type="number" th:field="*{importe}" required/>
+        <input type="number" th:field="*{idSistemaGestion}" required/>
+        <input type="checkbox" th:field="*{activo}" />
+        <input type="text" th:field="*{descripcion}" required/>
 
-        <button type="submit" name="newEmpresa">Create</button>
+
+        <button type="submit" name="newProduct">Create</button>
     </form>
 
 </body>

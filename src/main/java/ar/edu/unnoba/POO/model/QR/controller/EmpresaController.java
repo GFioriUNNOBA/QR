@@ -59,6 +59,10 @@ public class EmpresaController {
     public String id(@PathVariable Long id){
         return "redirect:/admin/empresa/{id}/gestores/index";
     }
+    @GetMapping("/{id}/prodcutos")
+    public String productos(@PathVariable Long id){
+        return "redirect:/admin/empresa/{id}/productos/index";
+    }
 
 
 

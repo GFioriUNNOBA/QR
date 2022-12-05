@@ -3,7 +3,6 @@ package ar.edu.unnoba.POO.model.QR.service;
 import ar.edu.unnoba.POO.model.QR.model.Empresa;
 import ar.edu.unnoba.POO.model.QR.model.Gestor;
 import ar.edu.unnoba.POO.model.QR.repository.EmpresaRepository;
-import ar.edu.unnoba.POO.model.QR.repository.GestorRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -75,14 +74,9 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
         return (UserDetails) repository.findByUsername(username);
     }
 
-    public Empresa Id(Long id) {
-        List<Empresa> emp = repository.findAll();
-        for (Empresa e : emp) {
-            if (e.getId().equals(id)) {
-                return e;
-            }
-        }
-        return null;
+    @Override
+    public List<Empresa> findAllByEmpresaId(Long id) {
+        return repository.findAllById(id);
     }
 
 }

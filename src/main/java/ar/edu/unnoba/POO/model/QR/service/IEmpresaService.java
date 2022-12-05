@@ -19,4 +19,6 @@ public interface IEmpresaService {
 
 
     List<Gestor> Gestores(Long id);
+
+    List<Empresa> findAllByEmpresaId(Long id);
 }

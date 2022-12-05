@@ -46,4 +46,17 @@ public class ProductoServiceImp implements IProductoService, UserDetailsService 
     public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
         return (UserDetails)repository.findByUsername(nombre);
     }
+
+    @Override
+    public Producto infoProducto(Long id) {
+        List<Producto> productos = repository.findAll();
+        for (Producto p : productos) {
+            if (p.getCodigo().equals(id)) {
+                return p;
+            }
+
+        }
+
+        return null;
+    }
 }

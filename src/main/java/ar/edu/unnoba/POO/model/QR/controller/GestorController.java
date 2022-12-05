@@ -1,7 +1,10 @@
 package ar.edu.unnoba.POO.model.QR.controller;
 
+import ar.edu.unnoba.POO.model.QR.model.Adminitrador;
 import ar.edu.unnoba.POO.model.QR.model.Empresa;
 import ar.edu.unnoba.POO.model.QR.model.Gestor;
+import ar.edu.unnoba.POO.model.QR.service.EmpresaServiceImp;
+import ar.edu.unnoba.POO.model.QR.service.GestorServiceImp;
 import ar.edu.unnoba.POO.model.QR.service.IEmpresaService;
 import ar.edu.unnoba.POO.model.QR.service.IGestorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.AuthenticationException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,26 +23,33 @@ public class GestorController {
 
 
     @Autowired
-    private IEmpresaService empresaService;
+    private EmpresaServiceImp empresaServiceImp;
     @Autowired
-    private IGestorService gestorService;
-    @Autowired
-    public GestorController(IGestorService gestorService) {
-        this.gestorService = gestorService;
-    }
+    private GestorServiceImp gestorServiceImp;
+
 
 
     @GetMapping("/index")
-    public String index(@PathVariable("id") Long id, Model model){
-        Empresa empresa = empresaService.infoEmpresa(id);
-        List<Gestor> gestores = gestorService.findAllByGestorId(id);
+    public String index(@PathVariable("id") Long id,Model model){
+
+        List<Gestor> gestores = gestorServiceImp.getAll();
+        List<Gestor> ges=new ArrayList<>();
+
         model.addAttribute("gestores", gestores);
-        model.addAttribute("idEmpresa", empresa);
-        return "/admin/empresa/gestores/index";
+        model.addAttribute("idEmpresa", id);
+        for(Gestor g : gestores){ // deberia ir en service
+            if(g.getEmpresa().getId().equals(id)){
+                ges.add(g);
+                model.addAttribute("gestoresDeEsaEmpresa" , ges);
+
+            }
+        }
+
+        return "admin/empresa/gestores/index";
     }
     @GetMapping("/new")
     public String userNew(@PathVariable("id") Long id, Model model, Authentication authentication ){
-        Empresa empresa = empresaService.infoEmpresa(id);
+        Empresa empresa = empresaServiceImp.infoEmpresa(id);
         Gestor gestor = new Gestor();
         gestor.setEmpresa(empresa);
         model.addAttribute("gestor", gestor);
@@ -46,10 +58,9 @@ public class GestorController {
 
     @PostMapping
     public String create(@ModelAttribute Gestor gestor,@PathVariable("id") Long id, Model model, Authentication authentication){
-        Empresa empresa = empresaService.infoEmpresa(id);
+        Empresa empresa = empresaServiceImp.infoEmpresa(id);
         gestor.setEmpresa(empresa);
-
-        gestorService.create(gestor);
+        gestorServiceImp.create(gestor);
 
         return "redirect:/admin/empresa/{id}/gestores/index";
     }
@@ -82,14 +93,14 @@ public class GestorController {
 
     @GetMapping("/delete")
     public String delete(@PathVariable("id") Long id){
-        gestorService.delete(id);
+        gestorServiceImp.delete(id);
         return "redirect:/index";
     }
 
 
     @GetMapping("/info")
     public String info(@PathVariable ("id") Long id, Model model) {
-        Gestor gestor = gestorService.info(id);
+        Gestor gestor = gestorServiceImp.info(id);
         model.addAttribute("ges",gestor);
 
         return "/info";

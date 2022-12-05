@@ -2,31 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Empresa</title>
+    <title>Producto</title>
 </head>
 <body>
 
-    <div>Empresa List</div>
+    <div>Lista producto</div>
     <table class="table table-dark">
         <thead>
         <tr>
-            <th>Empresa</th> <th>RS</th><th>Cuit</th>
+
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="emp : ${empresa}">
+        <tr th:each="emp : ${producto}">
             <td th:text="${emp.getUsername()}"> </td>
-            <td th:text="${emp.getRazonSocial()}"></td>
-            <td th:text="${emp.getCuit()}"></td>
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/delete/{id}(id=${emp.id})}">Eliminar</a></td>
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/info/{id}(id=${emp.id})}">Info</a></td>
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${emp.id})}">Gestor asociado</a></td>
+            <td th:text="${emp.getCodigo()}"> </td>
+            <td th:text="${emp.getImporte()}"> </td>
 
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${prod})/gestores/info/{idI}(idI=${emp.getCodigo()})}">Info</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${prod})/gestores/delete/{idD}(idD=${emp.getCodigo()})  }">Eliminar</a></td>
         </tr>
         </tbody>
     </table>
-    <a class="badge badge-primary" th:href="@{/admin/empresa/new}">Nueva Empresa</a>
+    <a class="badge badge-primary" th:href="@{/admin/empresa/{id}/productos/new(id=${prod})}">Nuevo producto</a>
 
 
 </body>

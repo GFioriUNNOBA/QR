@@ -1,9 +1,9 @@
 package ar.edu.unnoba.POO.model.QR.service;
 
-import ar.edu.unnoba.POO.model.QR.model.Empresa;
 import ar.edu.unnoba.POO.model.QR.model.Gestor;
 import ar.edu.unnoba.POO.model.QR.repository.EmpresaRepository;
 import ar.edu.unnoba.POO.model.QR.repository.GestorRespository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,7 +15,9 @@ import java.util.List;
 @Service
 public class GestorServiceImp implements IGestorService, UserDetailsService {
 
+    @Autowired
     private GestorRespository gestorRespository;
+    @Autowired
     private EmpresaRepository empresaRepository;
 
 
@@ -28,7 +30,6 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
         if(gestorRespository.findByUsername(gestor.getUsername())==null){
             gestor.setPassword(new BCryptPasswordEncoder().encode(gestor.getPassword()));
             gestor = gestorRespository.save(gestor);
-
 
         }
 
@@ -62,14 +63,14 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
 
     @Override
     public List<Gestor> findAllByGestorId(Long id) {
-       List<Gestor> gestores = gestorRespository.findAllById(id);
-       return  gestores;
+       return gestorRespository.findAllById(id);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
     }
+
 
 
 }
