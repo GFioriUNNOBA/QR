@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <title>Info</title>
 </head>
+
+
 <body>
 <h1> Info de la empresa </h1>
-    <td th:text="${empre.getUsername()}"> </td>
-    <td th:text="${empre.getRazonSocial()}"></td>
-    <td th:text="${empre.getCuit()}"></td>
+<div> <b>Empresa:</b> <td th:text="${empre.getRazonSocial()}"></td>  </div>
+<div> <b>Cuit:</b> <td th:text="${empre.getCuit()}"></td> </div>
+<div> <b>Razon Social:</b>  <td th:text="${empre.getRazonSocial()}"></td> </div>
+
+
+
+
 
 
 </body>

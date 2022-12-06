@@ -7,9 +7,9 @@
 <body>
     <div>New Empresa</div>
     <form action="#" th:action="@{/admin/empresa}" th:object="${emp}" method="post">
-        <input type="text" th:field="*{username}" required/>
-        <input type="number" th:field="*{cuit}"required/>
-        <input type="number" th:field="*{razonSocial}"required/>
+        <input type="text" th:field="*{username}" placeholder="Nombre empresa" required/>
+        <input type="number" th:field="*{cuit}" placeholder="Cuit" required/>
+        <input type="number" th:field="*{razonSocial}" placeholder="RazonSocial" required/>
 
         <button type="submit" name="newEmpresa">Create</button>
     </form>

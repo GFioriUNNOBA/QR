@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin/empresa/{id}/productos")
+@RequestMapping("/admin/empresa/{id}/productos")
 public class ProductoController {
     @Autowired
     private ProductoServiceImp productoService;
@@ -64,14 +64,14 @@ public class ProductoController {
 
 
 
-    @GetMapping("/delete")
-    public String delete(@PathVariable("id") Long id){
+    @GetMapping("/delete/{idD}")
+    public String delete(@PathVariable("idD") Long id){
         productoService.delete(id);
         return "redirect:/admin/empresa/{id}/productos/index";
     }
 
-    @GetMapping("/info")
-    public String info(@PathVariable ("id") Long id, Model model) {
+    @GetMapping("/info/{idI}")
+    public String info(@PathVariable ("idI") Long id, Model model) {
         Producto producto = productoService.infoProducto(id);
         model.addAttribute("pro",producto);
 

@@ -5,9 +5,16 @@
     <title>Info</title>
 </head>
 <body>
-<h1> Info de la empresa </h1>
-    <td th:text="${pro.getUsername()}"> </td>
-    <td th:text="${pro.getImporte()}"></td>
-    <td th:text="${pro.getDescripcion()}"></td>
+
+
+<h1> Info del producto </h1>
+
+<div> <b>Producto:</b> <td th:text="${pro.getUsername()}"></td> </div>
+<div> <b>Importe:</b> <td th:text="${pro.getImporte()}"></td> </div>
+<div> <b>Descripcion</b> : <td th:text="${pro.getDescripcion()}"></td> </td> </div>
+<div> <b>Empresa:</b> <td th:text="${pro.empresa.getUsername()}"></td> </td> </div>
+
+
+
 </body>
 </html>

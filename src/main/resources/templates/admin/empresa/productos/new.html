@@ -7,11 +7,10 @@
 <body>
     <div>New Producto</div>
     <form action="#" th:action="@{/admin/empresa/{id}/productos(id=${ prod.getEmpresa().getId()})}" th:object="${prod}" method="post">
-        <input type="text" th:field="*{username}" required/>
-        <input type="number" th:field="*{importe}" required/>
-        <input type="number" th:field="*{idSistemaGestion}" required/>
-        <input type="checkbox" th:field="*{activo}" />
-        <input type="text" th:field="*{descripcion}" required/>
+        <input type="text" th:field="*{username}" placeholder="Nombre producto" required/>
+        <input type="number" th:field="*{importe}" placeholder="Importe" required/>
+        <input type="number" th:field="*{idSistemaGestion}" placeholder="idSistemaGestion" required/>
+        <input type="text" th:field="*{descripcion}" placeholder="Descripcion del producto" required/>
 
 
         <button type="submit" name="newProduct">Create</button>

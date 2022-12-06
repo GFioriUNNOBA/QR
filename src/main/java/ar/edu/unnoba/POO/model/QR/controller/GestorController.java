@@ -91,19 +91,30 @@ public class GestorController {
         return "redirect:/admin/empresa/{id}/gestores/index";
     }**/
 
-    @GetMapping("/delete")
-    public String delete(@PathVariable("id") Long id){
+    @GetMapping("/delete/{idD}")
+    public String delete(@PathVariable("idD") Long id){
         gestorServiceImp.delete(id);
-        return "redirect:/index";
+        return "redirect:/admin/empresa/{id}/gestores/index";
     }
 
 
-    @GetMapping("/info")
-    public String info(@PathVariable ("id") Long id, Model model) {
+    @GetMapping("/info/{idI}")
+    public String info(@PathVariable ("idI") Long id, Model model) {
         Gestor gestor = gestorServiceImp.info(id);
         model.addAttribute("ges",gestor);
 
         return "/admin/empresa/gestores/info";
+    }
+
+    @GetMapping
+    public String session(@PathVariable Long id, Model model){
+        Gestor gestor = gestorServiceImp.info(id);
+        model.addAttribute("g", gestor);
+        model.addAttribute("idemp", id);
+        if(id.equals(gestor.getEmpresa().getId())){
+            return "redirect:/admin/empresa/{id}/gestores/index";
+        }
+        return "redirect:/admin/empresa/{id}/gestores/index";
     }
 
 

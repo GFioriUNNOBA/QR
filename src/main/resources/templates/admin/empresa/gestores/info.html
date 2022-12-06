@@ -6,8 +6,10 @@
 </head>
 <body>
 <h1> Info del gestor</h1>
-    <td th:text="${ges.getEmpresa().getUsername()}"> </td>
-    <td th:text="${ges.getApellido()}"></td>
-    <td th:text="${ges.getNombre()}"></td>
+
+    <div> <b>Empresa perteneciente:</b> <td th:text="${ges.getEmpresa().getUsername()}"> </td> </div>
+    <div> <b>Nombre:</b> <td th:text="${ges.getNombre()}"> </td> </div>
+    <div> <b>Apellido:</b> <td th:text="${ges.getApellido()}"> </td> </div>
+
 </body>
 </html>

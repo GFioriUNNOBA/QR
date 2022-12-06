@@ -11,7 +11,8 @@
         <thead>
         <tr>
 
-            <th></th>
+            <th>Producto</th> <th>Importe</th><th>Descripcion</th>
+
         </tr>
         </thead>
         <tbody>
@@ -20,8 +21,8 @@
             <td th:text="${emp.getCodigo()}"> </td>
             <td th:text="${emp.getImporte()}"> </td>
 
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}(id=${prod})/gestores/info/{idI}(idI=${emp.getCodigo()})}">Info</a></td>
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}/gestores/delete/{idD}(idD=${emp.getCodigo()}) (id=${idEmpresa}) }">Eliminar</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}/productos/info/{idI} (idI=${emp.getCodigo()},id=${idEmpresa} )}">Info</a></td>
+            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}/productos/delete/{idD}(idD=${emp.getCodigo()},id=${idEmpresa} ) }">Eliminar</a></td>
         </tr>
         </tbody>
     </table>

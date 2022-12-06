@@ -7,10 +7,10 @@
 <body>
     <div>New User</div> <!--no tocar (id=${gestor.empresa.getId()}) porq anda-->
      <form action="#" th:action="@{/admin/empresa/{id}/gestores (id=${gestor.empresa.getId()}) }" th:object="${gestor}"   method="post">
-         <input type="text" th:field="*{nombre}" required/>
-         <input type="password" th:field="*{password}"required/>
-         <input type="text" th:field="*{username}"required/>
-         <input type="text" th:field="*{apellido}"required/>
+         <input type="text" th:field="*{nombre}" placeholder="Nombre" required/>
+         <input type="password" th:field="*{password}" placeholder="Password" required/>
+         <input type="text" th:field="*{username}" placeholder="Email" required/>
+         <input type="text" th:field="*{apellido}" placeholder="Apellido" required/>
 
         <button type="submit" name="newUser">Create</button>
     </form>
