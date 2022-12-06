@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,7 +35,9 @@ public class ProductoServiceImp implements IProductoService, UserDetailsService 
 
     @Override
     public List<Producto> getAll() {
-        return repository.findAll();
+        List<Producto> productos =repository.findAll();
+        Collections.sort(productos, (p1, p2) -> p1.getUsername().compareToIgnoreCase(p2.getUsername()));
+        return productos;
     }
 
     @Override

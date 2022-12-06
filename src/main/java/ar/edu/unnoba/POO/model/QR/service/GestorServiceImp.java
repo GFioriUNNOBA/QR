@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -39,6 +41,7 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
     @Override
     public List<Gestor> getAll() {
         List<Gestor> ges=gestorRespository.findAll();
+        Collections.sort(ges, (g1,g2) -> g1.getApellido().compareToIgnoreCase(g2.getApellido()));
         return ges;
     }
 

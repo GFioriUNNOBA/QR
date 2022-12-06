@@ -66,30 +66,7 @@ public class GestorController {
     }
 
 
-  /**  @GetMapping("/new")
-    public String userNew(Model model,@PathVariable("id") Long id){
-        model.addAttribute("gestor",new Gestor());
-        model.addAttribute("idEmpresa", id);
 
-        return "/admin/empresa/gestores/new";
-    }
-
-    @GetMapping("/index")
-    public String index(@PathVariable("id") Long id,Model model){
-        Empresa empresa = empresaService.infoEmpresa(id);
-        List<Gestor> gestores = gestorService.getAll();
-        empresa.setGestores(gestores);
-        model.addAttribute("idEmpresa",empresa);
-
-        return "/admin/empresa/gestores/index";
-    }
-
-    @PostMapping
-    public String create(@ModelAttribute Gestor gestor,@PathVariable("id") Long id){
-        Gestor g= gestorService.create(gestor);
-
-        return "redirect:/admin/empresa/{id}/gestores/index";
-    }**/
 
     @GetMapping("/delete/{idD}")
     public String delete(@PathVariable("idD") Long id){
