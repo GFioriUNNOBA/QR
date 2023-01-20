@@ -14,10 +14,10 @@ public class Producto implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //hace que el id sea autoincremental con una estrategia que se pasa por parametro
     private Long codigo;
-    @Column(nullable = true,unique = true)
+    @Column(nullable = true)
     private Long idSistemaGestion;
 
-    @Column(nullable = false,unique = true,name="nombre")
+    @Column(nullable = false,name="nombre")
     private String username;
     @Column(nullable = false)
     private float importe;

@@ -2,18 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleTablas.css">
     <title>Gestores</title>
 </head>
 <body>
-    <div>Hola gestor </div>
-    <div th:if="${message}">
-        <span th:text="${message}"></span>
-    </div>
-    <div>Gestor List</div>
-    <table class="table table-dark">
+<div class="card w-75 container mb-3 cambiarCardBody">
+    <div class="card-header centro cambiarHeader "> <b> Lista de gestores </b> </div>
+    <div class="card-body boton">
+    <table class="table">
         <thead>
         <tr>
-            <th>Apellido</th> <th>Nombre</th><th>email</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+
             <th></th>
         </tr>
         </thead>
@@ -23,20 +26,25 @@
             <td th:text="${gestor.getNombre()}"></td>
             <td th:text="${gestor.getUsername()}"></td>
 
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}/gestores/info/{idI} (idI=${gestor.getId()},id=${idEmpresa} )}">Info</a></td>
-            <td><a class="badge badge-primary" th:href="@{/admin/empresa/{id}/gestores/delete/{idD}(idD=${gestor.getId()},id=${idEmpresa} ) }">Eliminar</a></td>
+            <td><a class="btn btn-outline-info" th:href="@{/admin/empresa/{id}/gestores/info/{idI} (idI=${gestor.getId()},id=${idEmpresa} )}">Info</a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{/admin/empresa/{id}/gestores/delete/{idD}(idD=${gestor.getId()},id=${idEmpresa} ) }">Eliminar</a></td>
 
 
 
         </tr>
         </tbody>
     </table>
-    <a class="badge badge-primary" th:href="@{/admin/empresa/{id}/gestores/new(id=${idEmpresa})}">New Gestor </a>
+        <br>
 
-    <div style="display: block;horiz-align: right;">
-        <form action="#" th:action="@{/logout}" th:method="post">
-            <input type="submit" value="Logout"/>
-        </form>
+        <div class="centro">
+            <form action="#" th:action="@{/logout}" th:method="post">
+               <div> <a class="btn btn-primary " th:href="@{/admin/empresa/{id}/gestores/new(id=${idEmpresa})}">New Gestor </a> </div>
+                <br>
+                <div> <button type="submit" class="btn btn-secondary">Logout</button></div>
+
+            </form>
+        </div>
+    </div>
     </div>
 
 </body>

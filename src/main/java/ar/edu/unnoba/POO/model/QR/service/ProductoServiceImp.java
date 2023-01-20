@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoServiceImp implements IProductoService, UserDetailsService {
@@ -26,9 +27,9 @@ public class ProductoServiceImp implements IProductoService, UserDetailsService 
 
     @Override
     public Producto create(Producto prod) {
-        if(repository.findByUsername(prod.getUsername())==null){
-            prod = repository.save(prod);
-        }
+
+        repository.save(prod);
+
         return prod;
 
     }
@@ -61,5 +62,13 @@ public class ProductoServiceImp implements IProductoService, UserDetailsService 
         }
 
         return null;
+    }
+    public Optional<Producto> listarProductoId(Long id){
+        return  repository.findById(id);
+    }
+
+    @Override
+    public Producto editarProducto(Producto producto){
+        return  repository.save(producto);
     }
 }
