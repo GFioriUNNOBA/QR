@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleTablas.css">
+    <title>Empresa</title>
+</head>
+<body>
+
+<div class="card w-75 container mb-3 cambiarCardBody">
+    <div class="card-header centro cambiarHeader "> <b> Lista de empresas </b> </div>
+    <div class="card-body boton">
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Empresa</th>
+        <th scope="col">Razon Social</th>
+        <th scope="col">Cuit</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emp : ${empresa}">
+    <td th:text="${emp.getUsername()}"> </td>
+    <td th:text="${emp.getRazonSocial()}"></td>
+    <td th:text="${emp.getCuit()}"></td>
+
+        <td><a class="btn btn-outline-primary" th:href="@{/admin/empresa/{id}(id=${emp.id})}">Gestores asociados</a></td>
+        <td><a class="btn btn-outline-secondary" th:href="@{/admin/empresa/{id}/productos/index(id=${emp.id})}">Productos</a></td>
+        <td><a class="btn btn-outline-info" th:href="@{/admin/empresa/info/{id}(id=${emp.id})}">Info</a></td>
+        <td><a class="btn btn-outline-danger" th:href="@{/admin/empresa/delete/{id}(id=${emp.id})}">Eliminar</a></td>
+
+    </tr>
+
+</table>
+    <a class="btn btn-primary centrar" th:href="@{/admin/empresa/new}">Nueva Empresa</a>
+
+    </div>
+    </div>
+
+
+</body>
+</html>

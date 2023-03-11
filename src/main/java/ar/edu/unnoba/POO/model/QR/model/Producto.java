@@ -27,6 +27,11 @@ public class Producto implements UserDetails {
     @Column(length = 100)
     private String descripcion;
 
+    @Column
+    private String imagen;
+
+
+
    @ManyToOne
    @JoinColumn(name= "empresa_id")
     private Empresa empresa;
@@ -98,6 +103,14 @@ public class Producto implements UserDetails {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     @Override

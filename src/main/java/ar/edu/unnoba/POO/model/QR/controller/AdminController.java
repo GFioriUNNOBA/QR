@@ -3,6 +3,7 @@ package ar.edu.unnoba.POO.model.QR.controller;
 import ar.edu.unnoba.POO.model.QR.model.Adminitrador;
 import ar.edu.unnoba.POO.model.QR.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,14 +47,14 @@ public class AdminController {
     public String delete(@PathVariable("id") Long id,
                          Authentication authentication,
                          RedirectAttributes redirectAttributes){
-        Adminitrador sessionUser = (Adminitrador) authentication.getPrincipal();
-        if(sessionUser.getId().equals(id)){
-            redirectAttributes.addFlashAttribute("message","No te podes borrar");
-            return "redirect:/admin";
-        }
+
         userService.delete(id);
         return "redirect:/admin";
     }
+
+
+
+
 
 
 }

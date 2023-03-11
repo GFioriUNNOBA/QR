@@ -17,4 +17,5 @@ public interface IProductoService {
     Producto infoProducto(Long id);
 
     Producto editarProducto(Producto producto);
+
 }

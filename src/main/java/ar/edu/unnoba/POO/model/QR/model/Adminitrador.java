@@ -1,5 +1,6 @@
 package ar.edu.unnoba.POO.model.QR.model;
 
+import ar.edu.unnoba.POO.model.QR.config.Roles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +25,11 @@ public class Adminitrador implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Roles rol;
+
+
 
     public Adminitrador(Long id, String apellido, String username, String email, String password) {
         this.id = id;
@@ -59,7 +65,16 @@ public class Adminitrador implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-//UserDetail methods
+
+    public Roles getRol() {
+        return rol;
+    }
+
+    public void setRol(Roles rol) {
+        this.rol = rol;
+    }
+
+    //UserDetail methods
 
     public String getPassword() {
         return password;
@@ -100,6 +115,6 @@ public class Adminitrador implements UserDetails {
 
    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_EMPRESA"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 }
