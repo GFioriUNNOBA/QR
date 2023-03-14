@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleCard.css">
+    <title>Info de la empresa</title>
+</head>
+
+
+<body>
+
+<div class="card text-dark bg-light mb-3 container border-dark  cambiarCardBody " style="max-width: 18rem;">
+    <div class="card-header centro cambiarHeader "> <b> Informacion de la empresa </b> </div>
+
+    <div class="card-body text-dark ">
+        <br>
+<div> <b>Empresa:</b> <td th:text="${empre.getUsername()}"></td>  </div>
+        <br>
+<div> <b>Cuit:</b> <td th:text="${empre.getCuit()}"></td> </div>
+        <br>
+<div> <b>Razon Social:</b>  <td th:text="${empre.getRazonSocial()}"></td> </div>
+
+        <br>
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

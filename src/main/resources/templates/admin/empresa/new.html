@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleNew.css">
+    <link rel="shortcut icon" href="/css/empresa.png">
+
+    <title>Crear Empresa</title>
+</head>
+<body>
+
+    <div class="card bg-light mb-3 container" style="max-width: 18rem;">
+        <img  class="img" src="/css/empresa.png" alt="error">
+        <div class="card-header centro">Registro de Empresa</div>
+        <div class="card-body">
+            <form action="#" th:action="@{/admin/empresa}" th:object="${emp}" method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text" th:field="*{username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Razon Social</label>
+                    <input type="number" th:field="*{razonSocial}"  class="form-control" id="exampleInputPassword1" placeholder="Razon Social">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Cuit</label>
+                    <input type="number" th:field="*{cuit}" class="form-control" id="exampleInputPassword1" placeholder="Cuit">
+                </div>
+                <button type="submit" class="btn btn-primary centrar">Crear</button>
+            </form>
+        </div>
+        </div>
+    </form>
+
+</body>
+</html>

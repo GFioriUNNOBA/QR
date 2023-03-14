@@ -1,0 +1,28 @@
+.centro{
+    text-align: center;
+
+}
+
+.centrar{
+    margin-top: 30px;
+    margin-left: 75px;
+ }
+
+.container{
+   display: flex;
+   margin-top: 100px;
+   justify-content: center;
+}
+
+body{
+    background-color: #144272;
+}
+
+.card-body{
+    padding-block-end: 100px ;
+}
+
+
+
+
+

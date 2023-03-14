@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleTablas.css">
+    <title>Administradores</title>
+</head>
+<body>
+    <div>Hola usuario <span th:text="${sessionUser.getUsername()}"></span>!!!</div>
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+    <div class="card w-75 container mb-3 cambiarCardBody">
+        <div class="card-header centro cambiarHeader "> <b> Lista de administradores </b> </div>
+        <div class="card-body boton">
+
+    <table class="table ">
+        <thead>
+        <tr>
+            <th scope="col">Administrador</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="admin : ${admin}">
+            <td th:text="${admin.getUsername()}"></td>
+            <td><a class="btn btn-outline-danger" th:href="@{/admin/delete/{id}(id=${admin.id})}">Eliminar</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div  class="centro">
+        <form action="#" th:action="@{/logout}" th:method="post">
+            <div><a class="btn btn-primary " th:href="@{/admin/new}">New admin</a></div>
+            <br>
+            <div> <button type="submit" class="btn btn-secondary">Logout</button></div>
+
+        </form>
+    </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

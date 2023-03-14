@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleCard.css">
+    <title>Qr</title>
+</head>
+<body>
+<div class="card text-dark bg-light mb-3 container border-dark  cambiarCardBody " style="max-width: 18rem;">
+    <div class="card-header centro cambiarHeader "> <b> Qr del producto</b> </div>
+
+    <div class="card-body text-dark ">
+        <br>
+        <div class="centro"  style="width:40%;display: inline-block">
+            <img th:src="${'data:image/png;base64,' + qrcode}" alt="" height="250" width="250">
+
+            <td><a class="btn btn-primary centrar" th:href="@{/logs/download }">Descargar</a></td>
+
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>

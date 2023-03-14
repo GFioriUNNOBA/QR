@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleTablas.css">
+
+    <title>Productos</title>
+</head>
+<body>
+<div class="card w-75 container mb-3 cambiarCardBody">
+    <div class="card-header centro cambiarHeader "> <b> Lista de productos </b> </div>
+    <div class="card-body boton">
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">Producto</th>
+            <th scope="col">Importe</th>
+            <th scope="col">Descripcion</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp : ${productosDeEsaEmpresa}">
+            <td th:text="${emp.getUsername()}"> </td>
+            <td th:text="${emp.getImporte()}"> </td>
+            <td th:text="${emp.getDescripcion()}"> </td>
+
+
+            <td><a class="btn btn-outline-info" th:href="@{/admin/empresa/{id}/productos/info/{idI} (idI=${emp.getCodigo()},id=${idEmpresa} )}">Info</a></td>
+            <td><a class="btn btn-outline-success" th:href="@{/admin/empresa/{id}/productos/editar/{idE}(idE=${emp.getCodigo()},id=${idEmpresa} ) }">Editar</a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{/admin/empresa/{id}/productos/delete/{idD}(idD=${emp.getCodigo()},id=${idEmpresa} ) }">Eliminar</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+        <div class="centro">
+            <a class="btn btn-primary" th:href="@{/admin/empresa/{id}/productos/new (id=${idEmpresa})}">Nuevo producto</a>
+        </div>
+
+    </div>
+    </div>
+
+</body>
+</html>
