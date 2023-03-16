@@ -8,6 +8,7 @@
     <title>Productos</title>
 </head>
 <body>
+
 <div class="card w-75 container mb-3 cambiarCardBody">
     <div class="card-header centro cambiarHeader "> <b> Lista de productos </b> </div>
     <div class="card-body boton">
@@ -30,7 +31,6 @@
 
 
             <td><a class="btn btn-outline-info" th:href="@{/admin/empresa/{id}/productos/info/{idI} (idI=${emp.getCodigo()},id=${idEmpresa} )}">Info</a></td>
-            <td><a class="btn btn-outline-success" th:href="@{/admin/empresa/{id}/productos/editar/{idE}(idE=${emp.getCodigo()},id=${idEmpresa} ) }">Editar</a></td>
             <td><a class="btn btn-outline-danger" th:href="@{/admin/empresa/{id}/productos/delete/{idD}(idD=${emp.getCodigo()},id=${idEmpresa} ) }">Eliminar</a></td>
         </tr>
         </tbody>
@@ -38,6 +38,8 @@
     <br>
         <div class="centro">
             <a class="btn btn-primary" th:href="@{/admin/empresa/{id}/productos/new (id=${idEmpresa})}">Nuevo producto</a>
+            <a class="btn btn-primary" th:href="@{/admin/empresa/index}">volver</a>
+
         </div>
 
     </div>

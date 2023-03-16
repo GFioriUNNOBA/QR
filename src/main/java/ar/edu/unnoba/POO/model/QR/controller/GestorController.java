@@ -80,6 +80,7 @@ public class GestorController {
         Gestor gestor = gestorServiceImp.info(id);
         model.addAttribute("ges",gestor);
 
+
         return "/admin/empresa/gestores/info";
     }
 
@@ -93,6 +94,7 @@ public class GestorController {
         }
         return "redirect:/admin/empresa/{id}/gestores/index";
     }
+
 
 
 }

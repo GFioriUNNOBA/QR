@@ -71,4 +71,5 @@ public class ProductoServiceImp implements IProductoService, UserDetailsService 
     public Producto editarProducto(Producto producto){
         return  repository.save(producto);
     }
+
 }

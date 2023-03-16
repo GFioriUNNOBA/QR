@@ -12,7 +12,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,10 +60,26 @@ public class ProductoController {
    }
 
     @PostMapping
-    public String create(@ModelAttribute Producto producto,@PathVariable("id") Long id, Model model){
+    public String create(@ModelAttribute Producto producto,@PathVariable("id") Long id, Model model, @RequestParam("file") MultipartFile imagen){
         Empresa empresa = empresaServiceImp.infoEmpresa(id);
         producto.setEmpresa(empresa);
+
+        if(!imagen.isEmpty()){
+            //Path directorioImagenes = Paths.get("src//main//resources/imagenes");
+            String rutaAbsoluta= "C://Productos//recursos";
+            try {
+                byte[] bytesImg = imagen.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//"+ imagen.getOriginalFilename());
+                Files.write(rutaCompleta,bytesImg);
+                producto.setImagen(imagen.getOriginalFilename());
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        }
         productoService.create(producto);
+        model.addAttribute("producto", producto);
 
         return "redirect:/admin/empresa/{id}/productos/index";
     }
@@ -78,7 +99,7 @@ public class ProductoController {
 
         return "/admin/empresa/productos/info";
     }
-
+/**
     @GetMapping ("/editar/{idE}")
     public String editarProducto(@PathVariable("idE") Long id, Model  modelo){
         modelo.addAttribute("prod", productoService.infoProducto(id));
@@ -98,7 +119,7 @@ public class ProductoController {
         productoService.editarProducto(productoExistente);
         return "redirect:/admin/empresa/{id}/productos/index";
     }
-
+**/
 
 
 }

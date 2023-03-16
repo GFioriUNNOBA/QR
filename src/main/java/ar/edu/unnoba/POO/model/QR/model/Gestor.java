@@ -1,5 +1,6 @@
 package ar.edu.unnoba.POO.model.QR.model;
 
+import ar.edu.unnoba.POO.model.QR.config.Roles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +24,9 @@ public class Gestor implements UserDetails {
     private String username;
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Roles rol;
     @ManyToOne
     @JoinColumn(name="gestor_id")//inica la relacion entre 2 clases, simepre que hay un ,OneToMany hay un ManyToOne, el mappedBy hace que se mapee con el atributo gestor que se encuentra en empresa
     private Empresa empresa;
@@ -81,7 +85,6 @@ public class Gestor implements UserDetails {
     }
 
 
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -93,6 +96,14 @@ public class Gestor implements UserDetails {
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    public Roles getRol() {
+        return rol;
+    }
+
+    public void setRol(Roles rol) {
+        this.rol = rol;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ar.edu.unnoba.POO.model.QR.service;
 
+import ar.edu.unnoba.POO.model.QR.config.Roles;
 import ar.edu.unnoba.POO.model.QR.model.Adminitrador;
 import ar.edu.unnoba.POO.model.QR.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class AdminServiceImp implements IUserService, UserDetailsService {
     public Adminitrador create(Adminitrador user) {
         if(repository.findByUsername(user.getUsername())==null){
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setRol(Roles.ROLE_ADMIN);
             user = repository.save(user);
         }
         return user;

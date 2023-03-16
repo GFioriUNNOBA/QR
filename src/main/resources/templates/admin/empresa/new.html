@@ -19,19 +19,21 @@
             <form action="#" th:action="@{/admin/empresa}" th:object="${emp}" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" th:field="*{username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre">
+                    <input type="text" th:field="*{username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre" required>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Razon Social</label>
-                    <input type="number" th:field="*{razonSocial}"  class="form-control" id="exampleInputPassword1" placeholder="Razon Social">
+                    <input type="number" min="0" th:field="*{razonSocial}"  class="form-control" id="exampleInputPassword1" placeholder="Razon Social" required>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Cuit</label>
-                    <input type="number" th:field="*{cuit}" class="form-control" id="exampleInputPassword1" placeholder="Cuit">
+                    <input type="number" min="0" th:field="*{cuit}" class="form-control" id="exampleInputPassword1" placeholder="Cuit" required>
                 </div>
                 <button type="submit" class="btn btn-primary centrar">Crear</button>
+                <a class="btn btn-primary container" th:href="@{/admin/empresa/index}">volver</a>
+
             </form>
         </div>
         </div>

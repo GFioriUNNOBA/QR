@@ -1,0 +1,31 @@
+.centro{
+    text-align: center;
+
+}
+
+.centrar{
+    margin-top: 30px;
+    margin-left: 75px;
+}
+
+.container{
+    display: flex;
+
+    justify-content: center;
+
+}
+
+body{
+    background-color: #144272;}
+
+.cambiarHeader{
+    background: #53b8ff;
+    padding: 40px;
+
+}
+
+.cambiarCardBody{
+    position: relative;
+    margin-top: 100px;
+
+}

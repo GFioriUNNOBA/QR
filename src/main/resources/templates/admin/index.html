@@ -32,9 +32,11 @@
 
     <div  class="centro">
         <form action="#" th:action="@{/logout}" th:method="post">
-            <div><a class="btn btn-primary " th:href="@{/admin/new}">New admin</a></div>
-            <br>
-            <div> <button type="submit" class="btn btn-secondary">Logout</button></div>
+            <div><a class="btn btn-primary " th:href="@{/admin/new}">New admin</a>
+                <a class="btn btn-primary" th:href="@{/admin/empresa/index}">volver</a>
+                <button type="submit" class="btn btn-secondary">Logout</button>
+            </div>
+
 
         </form>
     </div>

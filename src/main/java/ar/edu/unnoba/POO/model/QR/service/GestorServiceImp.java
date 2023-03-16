@@ -1,5 +1,6 @@
 package ar.edu.unnoba.POO.model.QR.service;
 
+import ar.edu.unnoba.POO.model.QR.config.Roles;
 import ar.edu.unnoba.POO.model.QR.model.Gestor;
 import ar.edu.unnoba.POO.model.QR.repository.EmpresaRepository;
 import ar.edu.unnoba.POO.model.QR.repository.GestorRespository;
@@ -31,6 +32,7 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
     public Gestor create(Gestor gestor) {
         if(gestorRespository.findByUsername(gestor.getUsername())==null){
             gestor.setPassword(new BCryptPasswordEncoder().encode(gestor.getPassword()));
+            gestor.setRol(Roles.ROLE_GESTOR);
             gestor = gestorRespository.save(gestor);
 
         }
@@ -71,7 +73,7 @@ public class GestorServiceImp implements IGestorService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        return (UserDetails)gestorRespository.findByUsername(username);
     }
 
 

@@ -5,32 +5,25 @@
 
 .centrar{
     margin-top: 30px;
-    margin-left: 400px;
+    margin-left: 75px;
 }
 
 .container{
     display: flex;
-    margin-top: 50px;
+
     justify-content: center;
 }
 
 body{
-    background-color: #f8f8f8;
-}
-
-.card-body{
-    padding-block-end: 100px ;
-}
+    background-color: #144272;}
 
 .cambiarHeader{
     background: #53b8ff;
-    padding: 25px;
+    padding: 40px;
 
 }
+
 .cambiarCardBody{
-    padding: 0px;
+    position: relative;
+    margin-top: 100px;
 }
-.boton{
-    padding-bottom: 20px;
-}
-

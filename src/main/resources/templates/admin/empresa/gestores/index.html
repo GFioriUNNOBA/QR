@@ -38,9 +38,10 @@
 
         <div class="centro">
             <form action="#" th:action="@{/logout}" th:method="post">
-               <div> <a class="btn btn-primary " th:href="@{/admin/empresa/{id}/gestores/new(id=${idEmpresa})}">New Gestor </a> </div>
-                <br>
-                <div> <button type="submit" class="btn btn-secondary">Logout</button></div>
+               <div> <a class="btn btn-primary " th:href="@{/admin/empresa/{id}/gestores/new(id=${idEmpresa})}">New Gestor </a>
+                <a class="btn btn-primary" th:href="@{/admin/empresa/index}">volver</a>
+                <button type="submit" class="btn btn-secondary " >Logout</button></div>
+
 
             </form>
         </div>

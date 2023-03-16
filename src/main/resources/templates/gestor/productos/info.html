@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styleCard.css">
+    <link rel="stylesheet" href="/css/styleCardInfo.css">
     <title>Info productos </title>
 </head>
 <body>
@@ -16,20 +16,22 @@
              th:src="@{'/recursos/'+${pro.getImagen()}}"
              th:alt="${pro.getImagen()}"
              style="max-width: 80%">
-<br>
-<div> <b>Producto:</b> <td th:text="${pro.getUsername()}"></td> </div>
+
         <br>
-<div> <b>Importe:</b> <td th:text="${pro.getImporte()}"></td> </div>
+        <div> <b>Producto:</b> <td th:text="${pro.getUsername()}"></td> </div>
         <br>
-<div> <b>Descripcion</b> : <td th:text="${pro.getDescripcion()}"></td> </td> </div>
+        <div> <b>Importe:</b> <td th:text="${pro.getImporte()}"></td> </div>
         <br>
-<div> <b>Empresa:</b> <td th:text="${pro.empresa.getUsername()}"></td> </td> </div>
+        <div> <b>Descripcion</b> : <td th:text="${pro.getDescripcion()}"></td> </td> </div>
+        <br>
+        <div> <b>Empresa:</b> <td th:text="${pro.empresa.getUsername()}"></td> </td> </div>
         <br>
 
-        <a class="btn btn-primary container" th:href="@{/admin/empresa/{id}/productos/index (id=${pro.getEmpresa().getId()})}">volver</a>
-
+        <div class="centro">
+            <a class="btn btn-primary" th:href="@{/gestor/productos/index}">volver</a>
+        </div>
     </div>
-    </div>
+</div>
 
 </body>
 </html>

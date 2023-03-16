@@ -1,11 +1,10 @@
 package ar.edu.unnoba.POO.model.QR.config;
 
-import ar.edu.unnoba.POO.model.QR.service.AdminServiceImp;
-import ar.edu.unnoba.POO.model.QR.service.IUserService;
+import ar.edu.unnoba.POO.model.QR.service.GestorServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,29 +15,42 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+//@Order(2)
 public class SecurityConfig {
-    private AdminServiceImp userDetailsService;
+
+
+
+    private GestorServiceImp GestorDetailsService;
 
     @Autowired
-    public SecurityConfig(AdminServiceImp userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfig(GestorServiceImp userDetailsService) {
+        this.GestorDetailsService = userDetailsService;
     }
 
+
+
+
     public UserDetailsService getUserDetailsService() {
-        return userDetailsService;
+        return GestorDetailsService;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .userDetailsService(GestorDetailsService)
                 .authorizeHttpRequests((requests) -> requests
-                        .antMatchers("/webjars/**", "/resources/**","/css/**").permitAll()
+                        .antMatchers( "/webjars/**","/resources/**","/css/**").permitAll()
                         .antMatchers("/").permitAll()
                         .anyRequest().authenticated()
+
                 )
 
                 .formLogin((form) -> form
-                        .loginPage("/login")
+                        //.loginPage("/login")
+                        .loginPage("/home")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("email")
+                        .defaultSuccessUrl("/gestor/home")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
@@ -47,7 +59,7 @@ public class SecurityConfig {
     }
     @Bean
     public UserDetailsService userDetailsService(){
-        return this.userDetailsService;
+        return this.GestorDetailsService;
     }
 
     @Bean
@@ -58,7 +70,7 @@ public class SecurityConfig {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setUserDetailsService(GestorDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
 

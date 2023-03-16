@@ -1,0 +1,50 @@
+.centro{
+    text-align: center;
+
+}
+
+.centrar{
+    margin-top: 30px;
+    margin-left: 75px;
+}
+
+.container{
+    display: flex;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+body{
+    background-color: #F9F9F9;
+}
+.img{
+
+    display: flex;
+    justify-content: center;
+    margin: 9px;
+    margin-left: 100px;
+    padding: 0px;
+    width: 70px;
+    border-radius: 8%;
+    height: 70px;
+
+
+
+}
+
+.cambiarHeader{
+    background: #53b8ff;
+    padding: 40px;
+
+}
+
+.cambiarCardBody{
+    padding: 0px;
+
+
+}
+.container2{
+    display: flex;
+    margin-top: 70px;
+    justify-content: center;
+}

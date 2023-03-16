@@ -14,7 +14,7 @@
     <img  class="img" src="/css/prod.png" alt="error">
     <div class="card-header centro">Registro de Producto</div>
     <div class="card-body">
-        <form action="#" th:action="@{/admin/empresa/{id}/productos(id=${ prod.getEmpresa().getId()})}" th:object="${prod}" method="post" enctype="multipart/form-data">
+        <form action="#" th:action="@{/gestor/productos/}" th:object="${prod}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nombre</label>
                 <input type="text"th:field="*{username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre" required>
@@ -22,27 +22,31 @@
             <br>
             <div class="form-group">
                 <label for="exampleInputEmail1">Precio</label>
-                <input type="number"  step="any" min="0" th:field="*{importe}"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Precio" required>
+                <input type="number" step="any"  th:field="*{importe}"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Precio" required>
             </div>
             <br>
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Descripcion</label>
-                <input type="text" th:field="*{descripcion}"class="form-control" id="exampleInputPassword1" placeholder="Descripcion" required>
+                <input type="text" th:field="*{descripcion}"class="form-control" id="exampleInputPassword1" placeholder="Descripcion"required>
             </div>
-            <br>
+
+
             <div class="form-group row">
-                <p> Imagen </p>
+                <label class="col-md-2" for="imagen"> Imagen</label>
                 <input type="file" name="file" class="form-control form-control-sm col-md-6" id="imagen">
 
 
             </div>
 
-            <button type="submit" class="btn btn-primary centrar">Crear</button>
-            <a class="btn btn-primary container" th:href="@{/admin/empresa/index}">volver</a>
 
+<br>
+<div class="centro">
+            <button type="submit" class="btn btn-primary ">Crear</button>
+            <a class="btn btn-secondary " th:href="@{/gestor/productos/index}">Cancelar</a>
+</div>
         </form>
     </div>
-    </div>
+</div>
 </body>
 </html>

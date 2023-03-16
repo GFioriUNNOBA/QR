@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import java.util.*;
 
@@ -28,9 +30,20 @@ public class EmpresaServiceImp implements IEmpresaService, UserDetailsService {
     public Empresa create(Empresa empresa) {
         if (repository.findByUsername(empresa.getUsername()) == null) {
             empresa.getUsername();
-            empresa = repository.save(empresa);
+            //empresa = repository.save(empresa);
 
         }
+
+        if (repository.existsEmpresasByCuit(empresa.getCuit()) || repository.existsEmpresasByRazonSocial(empresa.getRazonSocial())){
+            RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+            redirectAttributes.addAttribute("error","error en la creacion de la empresa");
+
+        }
+        else {
+            empresa = repository.save(empresa);
+        }
+
+
         return empresa;
     }
 

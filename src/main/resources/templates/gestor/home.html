@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/homeGestor.css">
+    <title>Home</title>
+</head>
+<body>
+
+<div class="card border-dark mb-3 container cambiarCardBody" style="max-width: 18rem;">
+    <div class="card-header centro "><div>Bienvenido gestor <span th:text="${sessionGestor.getNombre()}"></span> <span th:text="${sessionGestor.getApellido()}"></span></div></div>
+    <div class="card-body text-dark">
+        <div > <b>Empresa perteneciente: </b>  <td th:text="${sessionGestor.getEmpresa().getUsername()}"> </td>
+        </div>
+        <br>
+        <form action="#" th:action="@{/logout}" th:method="post">
+
+            <td><a class="btn btn-outline-secondary centro container" th:href="@{/gestor/productos/index}">Lista de productos</a></td>
+            <br>
+            <div> <button type="submit" class="btn btn-secondary centro container">Logout</button></div>
+
+        </form>
+    </div>
+</div>
+
+    </body>
+</html>

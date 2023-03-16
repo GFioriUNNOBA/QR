@@ -18,6 +18,7 @@
         <br>
     <div> <b>Apellido:</b> <td th:text="${ges.getApellido()}"> </td> </div>
         <br>
+        <a class="btn btn-primary container" th:href="@{/admin/empresa/{id}/gestores/index (id=${ges.getEmpresa().getId()})}">volver</a>
 
         </div>
         </div>

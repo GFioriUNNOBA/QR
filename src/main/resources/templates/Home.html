@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleBienvenida.css">
+    <title>Home</title>
+</head>
+
+<body>
+<div>
+
+<div class="card bg-light mb-3 container cambiarCardBody" style="max-width: 18rem;">
+    <div class="card-header centro" > <h2> Bienvenido</h2>   </div>
+    <div class="card-body">
+<form th:action="@{/home}"  method="post">
+    <img  class="img container " src="/css/comercio.png" alt="error">
+
+    <td><a class="btn btn-outline-secondary centro container" th:href="@{/admin/login}">Soy Administrador</a></td>
+    <br>
+    <td><a class="btn btn-outline-primary centro container"  th:href="@{/login}">Soy Gestor</a></td>
+
+
+    </form>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
